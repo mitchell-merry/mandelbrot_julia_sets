@@ -5,14 +5,15 @@ var scale;
 var leftBound = -2, rightBound = 1, topBound, bottomBound;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  // createCanvas(windowWidth, windowHeight);
+  createCanvas(300, 300);
 
   // Starting scale is from -2 to 2 on the x axis
-  scale = (rightBound-leftBound)/windowWidth;
+  scale = (rightBound-leftBound)/width;
 
   // Get top and bottom bound from this
-  topBound = -scale*windowHeight/2;
-  bottomBound = scale*windowHeight/2;
+  topBound = -scale*height/2;
+  bottomBound = scale*height/2;
 
   updatePlane();
 }
@@ -21,16 +22,16 @@ function updatePlane() {
   loadPixels();
   
   var realX = leftBound;
-  for(var pixelX = 0; pixelX < windowWidth; pixelX++) {
+  for(var pixelX = 0; pixelX < width; pixelX++) {
     
     var realY = topBound;
-    for(var pixelY = 0; pixelY < windowHeight; pixelY++) {
+    for(var pixelY = 0; pixelY < height; pixelY++) {
 
       // var [ realX, realY ] = [ pixelXtoRealX(pixelX), pixelYtoRealY(pixelY) ];
 
       var isU = isUnbounded(realX, realY); 
       
-      var pix = (pixelX + pixelY * windowWidth) * 4;
+      var pix = (pixelX + pixelY * width) * 4;
       var bright = isU ? 255 : 0;
       pixels[pix] = bright;
       pixels[pix+1] = bright;
@@ -79,10 +80,10 @@ function mouseDragged(event) {
 }
 
 // Convert a pixel position on the x/y-axis to the equivalent position on the cartesian (?!) plane on the x/y-axis, and vice-versa
-function pixelXtoRealX(x) { return map(x, 0, windowWidth, leftBound, rightBound); }
-function pixelYtoRealY(y) { return map(y, 0, windowHeight, topBound, bottomBound); }
-function realXtoPixelX(x) { return map(x, leftBound, rightBound, 0, windowWidth); }
-function realYtoPixelY(y) { return map(y, topBound, bottomBound, 0, windowHeight); }
+function pixelXtoRealX(x) { return map(x, 0, width, leftBound, rightBound); }
+function pixelYtoRealY(y) { return map(y, 0, height, topBound, bottomBound); }
+function realXtoPixelX(x) { return map(x, leftBound, rightBound, 0, width); }
+function realYtoPixelY(y) { return map(y, topBound, bottomBound, 0, height); }
 
 // scale = real / pixel
 // pixel = real / scale
@@ -97,6 +98,6 @@ function pixelSizetoRealSize(size) { return size*scale; }
 // function getBottomBound() { return center.y+scale*windowHeight/2; }
 
 // https://stackoverflow.com/questions/44061621/how-can-i-resize-my-canvas-to-fit-the-browser-window
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
+// function windowResized() {
+//   resizeCanvas(windowWidth, windowHeight);
+// }
