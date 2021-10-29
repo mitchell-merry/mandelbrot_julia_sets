@@ -29,8 +29,6 @@ function updatePlane() {
     var realY = topBound;
     for(var pixelY = 0; pixelY < height; pixelY++) {
 
-      // var [ realX, realY ] = [ pixelXtoRealX(pixelX), pixelYtoRealY(pixelY) ];
-
       var isU = isUnbounded(realX, realY); 
       
       var pix = (pixelX + pixelY * width) * 4;
@@ -39,6 +37,7 @@ function updatePlane() {
       pixels[pix+1] = bright;
       pixels[pix+2] = bright;
       pixels[pix+3] = 255;
+      
       realY += scale;
     }
     

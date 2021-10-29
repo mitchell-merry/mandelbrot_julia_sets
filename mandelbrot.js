@@ -1,4 +1,4 @@
-const ITERATIONS = 200;
+const ITERATIONS = 500;
 
 // is c (ca + cb*i) in the mandelbrot set
 // https://en.wikipedia.org/wiki/Mandelbrot_set
