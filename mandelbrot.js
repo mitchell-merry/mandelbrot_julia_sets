@@ -1,19 +1,22 @@
-const ITERATIONS = 300;
+const ITERATIONS = 200;
 
-// is x,y in the mandelbrot set
+// is c (ca + cb*i) in the mandelbrot set
 // https://en.wikipedia.org/wiki/Mandelbrot_set
-function isUnbounded(x, y) {
+function isUnbounded(ca, cb) {
 
-    // z1 = c
-    var z = { a: x, b: y };
-    var c = { a: x, b: y };
+    // z0 = 0
+    let za = 0, zb = 0;
+    let za_sq = 0, zb_sq = 0;
+    let i = 0;
+    let a = ca;
 
-    var i = 1;
-    for(; i < ITERATIONS && abs(z.a+z.b) < 7; i++) {
-        z = {
-            a: (z.a * z.a - z.b * z.b) + c.a,
-            b: (2 * z.a * z.b) + c.b
-        };
+    for(; i < ITERATIONS && za_sq + zb_sq < 4; i++) {
+        a = za_sq - zb_sq + ca;
+        zb = 2 * za * zb + cb;
+        za = a;
+
+        za_sq = za * za;
+        zb_sq = zb * zb;
     }
     
     return i === ITERATIONS;

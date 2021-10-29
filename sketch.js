@@ -2,11 +2,13 @@
 var scale;
 
 // bounds of the screen according to the real numbers
-var leftBound = -2, rightBound = 1, topBound, bottomBound;
+var leftBound = -2, rightBound = 0.5, topBound, bottomBound;
+
+var W = 550, H = W;
 
 function setup() {
   // createCanvas(windowWidth, windowHeight);
-  createCanvas(300, 300);
+  createCanvas(W, H);
 
   // Starting scale is from -2 to 2 on the x axis
   scale = (rightBound-leftBound)/width;
@@ -91,13 +93,8 @@ function realYtoPixelY(y) { return map(y, topBound, bottomBound, 0, height); }
 function realSizetoPixelSize(size) { return size/scale; }
 function pixelSizetoRealSize(size) { return size*scale; }
 
-// Gets the left/right/top/bottom bounds of the canvas as real numbers according to scale/center 
-// function getLeftBound() { return center.x-scale*windowWidth/2; }
-// function getRightBound() { return center.x+scale*windowWidth/2; }
-// function getTopBound() { return center.y-scale*windowHeight/2; }
-// function getBottomBound() { return center.y+scale*windowHeight/2; }
-
 // https://stackoverflow.com/questions/44061621/how-can-i-resize-my-canvas-to-fit-the-browser-window
 // function windowResized() {
 //   resizeCanvas(windowWidth, windowHeight);
+//   updatePlane();
 // }
